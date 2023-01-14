@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Users</title>
+</head>
+<body>
+<div>
+    <h2>All Users</h2>
+    <table border="2">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Phone</th>
+            <th>Update</th>
+            <th>Delete</th>
+            <th>View</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="users :${user}">
+        <td th:href="@{/users/{id}(id =${users.getId()})}" th:text="${users.getName()}">user</td>
+        <td th:href="@{/users/{id}(id =${users.getId()})}" th:text="${users.getSurname()}">user</td>
+        <td th:href="@{/users/{id}(id =${users.getId()})}" th:text="${users.getPhone()}">user</td>
+            <td><form th:method="GET", th:action="@{/users/{id}/edit(id=${users.getId()})}"><input type="submit" value="Update"/></form></td>
+            <td><form th:method="DELETE", th:action="@{/users/delete/{id}(id=${users.getId()})}"><input type="submit" value="Delete"/></form></td>
+            <td><form th:method="GET", th:action="@{/users/{id}(id=${users.getId()})}"><input type="submit" value="View"/></form></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<br/>
+<hr/>
+<a href="/users/new"> Create new User</a>
+</body>
+</html>
+</html>
